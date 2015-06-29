@@ -1,0 +1,60 @@
+﻿@model FinalProject.Models.UserInfo
+@{
+    ViewBag.Title = "LogIn";
+  
+}
+
+@using FinalProject.Models;
+<div class="container">
+    
+        @if (ViewBag.isUser == false)
+        {
+            <div class="alert alert-danger  alert-dismissible"><button type="button" class="close" data-dismiss='alert'>x</button>Wrong Password</div>
+        }
+    
+</div>
+
+        <div class="pull-right" style="background-color:white;margin-right: 3%;border-style: ridge">
+            <div class="navbar-header">
+                <img src="~/Images/login.jpg" class="img-rounded" alt="" width="100" height="100">
+                <a class="navbar-brand" href="#">MINI-MARKET</a>
+            </div>
+            <!--<form action="/Home/CheckLogIn" method="POST">-->
+            @using(Html.BeginForm("CheckLogIn","Home",FormMethod.Post)){
+                <div>
+                    @Html.Label("Sign In to Your Account As", new { style = "margin-left: 7%" })<br/>
+                    @Html.RadioButtonFor(m => m.Status,"user",
+                        new{ style = "margin-left: 7%; margin-bottom: 4%; margin-right: 2%",value="user" })
+                    @Html.LabelFor(x=>x.Status,"User", new {@class="control-label"})
+                    @Html.RadioButtonFor(m => m.Status, "admin",
+                        new{ style = "margin-left: 7%; margin-bottom: 4%; margin-right: 2%", value="admin" })
+                    @Html.LabelFor(x => x.Status,"Admin", new { @class = "control-label" })
+                </div>
+                <div style="width: 89%">
+                    <!--<input type="text" required="" class="form-control" style="margin-left: 7%; margin-bottom: 4%" name="UserName" placeholder="MiniMarket UserName" />-->
+                    @Html.TextBoxFor(
+                    m=>m.UserName,
+                    "",
+                    new{
+                        placeholder="Mini Market User Name",
+                        @class="form-control",
+                         style = "margin-left: 7%; margin-bottom: 4%"
+                    })
+                </div>
+                <div style="width: 89%">
+                  <input type="password"  class="form-control" style="margin-left: 7%; margin-bottom: 4%" name="Password" placeholder="Password" />
+                </div>
+                @*<div>
+                    <input type="checkbox" style="margin-left: 7%; margin-bottom: 4%" /><label>Keep me Sign In</label>
+                </div>*@
+            <div style="width: 89%">
+                <input type="submit" class="form-control" style="color: white; margin-left: 7%; margin-bottom: 4%; background-color: darkblue; font-family: monospace" value="Sign In" />
+            </div>
+            
+            <!--</form>-->
+}
+            <div style="width: 89%">
+               @* <a style="margin-left:7%;margin-bottom: 4%">I can't access my Account</a>*@
+                <a href="/Home/SignUp">  <input type="submit" class="form-control" style="color: white;margin-left:7%;margin-bottom: 4%;margin-top: 4%;background-color: blue;font-family: monospace" value="Create Account" /></a>
+            </div>
+        </div>

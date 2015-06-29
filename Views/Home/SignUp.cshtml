@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Sign Up";
+}
+@using System.Activities.Expressions
+@using FinalProject.Models
+@model UserInfo
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+@Scripts.Render("~/bundles/jqueryval")
+<div class="pull-right" style="background-color:white;margin-right: 3%;border-style: ridge">
+    <div class="navbar-header">
+        <img src="~/Images/signup1.jpg" class="img-rounded" width="100" height="100">
+        <a class="navbar-brand" href="#">MINI-MARKET</a>
+    </div>
+    <br /><br /><br /><br /><br />
+    <div style="width: 89%">
+        <p style="margin-left:7%;margin-bottom: 4%">Sign Up for Posting Adds</p>
+    </div>
+    @using (Html.BeginForm("AddedInfo", "Home", FormMethod.Post,
+        new {enctype = "multipart/form-data"}))
+    {
+        <div style="width: 89%">
+            @Html.TextBoxFor(m => m.FirstName,"",new{
+                placeholder="First Name",
+                @class = "form-control",
+                style = "margin-left: 7%; margin-bottom: 4%"
+            })
+        </div>
+        <div style="width: 89%">
+            @Html.TextBoxFor(m => m.LastName,"",new{
+                placeholder = "Last Name",
+                @class = "form-control",
+                style = "margin-left: 7%; margin-bottom: 4%"
+            })                </div>
+        <div style="width: 89%">
+            @*  @Html.TextBoxFor(m => m.UserName,"",new{
+        placeholder = "UserName",
+        @class = "form-control",
+        style = "margin-left: 7%; margin-bottom: 4%"
+    })*@    
+            <span style="margin-left: 11px;" id="uuu"></span>
+            <input type="text" name="UserName" id="us" onblur="validate()" placeholder="UserName" class="form-control" style="margin-left: 7%; margin-bottom: 4%" />
+
+        </div>
+        <div style="width: 89%">
+            <input type="password"  required="" class="form-control" style="margin-left: 7%; margin-bottom: 4%" name="Password" placeholder="Password" />
+        </div>
+        <div style="width: 89%">
+            @Html.TextBoxFor(m => m.MobileNo,"",new{
+                placeholder = "Mobile",
+                @class = "form-control",
+                style = "margin-left: 7%; margin-bottom: 4%"
+            })                </div>
+        <div style="width: 89%" class="col-md-8 ">
+            <p class="col-md-2;col-lg-pull-1">BirthDay</p>
+            
+            <input type="date" required="" class="form-control" style="margin-left: 7%; margin-bottom: 4%" name="BirthDay" placeholder="Mobile No" />
+        </div>
+        <div>
+            @Html.RadioButtonFor(m => m.Gender, "male",
+                new { style = "margin-left: 7%; margin-bottom: 4%; margin-right: 2%", value = "male" })
+            @Html.LabelFor(x => x.Status, "Male", new { @class = "control-label" })
+            @Html.RadioButtonFor(m => m.Gender, "female",
+                new { style = "margin-left: 7%; margin-bottom: 4%; margin-right: 2%", value = "female" })
+            @Html.LabelFor(x => x.Status, "Female", new { @class = "control-label" })
+        </div>
+        if(ViewBag.a == "admin")
+        {
+            <input type="hidden" name="Status" value="admin" />
+        }
+        else
+        {
+            <input type="hidden" name="Status" value="user" />
+        }
+        <div style="width: 89%">
+            <a href="/Home/AddedInfo"> <input type="submit" class="form-control" name="Status" style="margin-left: 7%; margin-bottom: 4%; margin-top: 4%; background-color: blue; font-family: monospace" value="Create Account" /></a>
+        </div>
+    }
+</div>
+<script >
+    function validate() {
+
+        $('#uuu').load('/HOME/Ajax?user='+$('#us').val());
+        // $('#us').load('/HOME/Ajax');
+    }
+</script>

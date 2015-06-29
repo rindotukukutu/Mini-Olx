@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Search";
+}
+@using FinalProject.Models;
+
+<a href="/User/PostAdd" class="btn btn-sm btn-info"><h2>Post Adds</h2></a>
+
+@foreach (Add s in Model)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                @{
+    string[] split1 = @s.Url.Split('_');
+    string[] sp2 = @split1[1].Split('.');
+                }
+
+                @*<div class=" col-md-3 ">
+                        <div class="row" style="width: auto ">
+                            <label>@s.Discription</label><br />
+                        </div>
+                    </div>
+                    <div class=" col-md-3">
+
+                        <div class="row" >
+                            <label>@s.price</label><br />
+                            <label>@s.Negotiable</label>
+                        </div>
+                    </div>
+                    <div class=" col-md-3">
+
+                        <div class="row" >
+                            <label>@s.MobileNo</label><br />
+                            <label>@s.Email</label>
+                        </div>
+                    </div>*@
+                @*<div class=" col-md-3">
+
+                        <div class="row">
+                            <label>@s.Name</label><br />
+                        </div>
+                    </div>*@
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Rs: @s.price</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                                @for (int i = int.Parse(sp2[0]); i > 0; i--)
+                                {
+                                    <div class=" col-md-3" style="">
+                                        @{
+                                    string s1 = split1[0] + "_" + i + "." + sp2[1];
+                                    <img src="~/Images/@s1" height="191" width="190" class="img-rounded img-responsive" alt="madrid">
+                                        }
+                                    </div>
+                                }
+                                <div class="col-md-3">
+                                    <i class="fa fa-fw fa-mobile-phone"></i><label class="control-label"><strong>Phone:</strong>@s.MobileNo</label><br />
+                                    <i class="fa fa-fw fa-envelope"></i><label class="control-label"><strong>Email:</strong>@s.Email</label><br />
+                                    <i class="fa fa-fw fa-child"></i><label class="control-label"><strong>Person:</strong>@s.Name</label><br />
+                                    <i class="fa fa-fw fa-child"></i><label class="control-label"><strong>Catagory:</strong>@s.Ctagory</label><br />
+                                    <i class="fa fa-fw "></i><label class="control-label">
+                                        <strong>Negotiable:</strong>@{if (!string.IsNullOrEmpty(s.Negotiable))
+                                        {@s.Negotiable }
+                                        else
+                                        { <span>Not Negotiable</span>}
+                                        }
+                                    </label><br />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-footer">
+                            <p class="lead"><strong>Description:</strong>@s.Discription</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

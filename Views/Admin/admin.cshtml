@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Admin";
+}
+@using FinalProject.Models;
+
+<div class="container" style="background-color: white">
+    <div class="item" style="color: white">
+        <h2>Admin Pannel</h2>
+    </div>
+    <div class="col-md-3 pull-right">
+        <form action="@Url.Action("SignUp", "Home")" method="POST">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="col-md-4">
+                            <input type="submit" class="btn btn-info" value="Add Admin" />
+                            <input type="hidden" class="form-control" name="status" value="admin" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3 pull-left">
+        <form action="@Url.Action("AddCatagory", "Admin")" method="POST">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="col-md-4">
+                            <input type="submit" class="btn btn-success" value="Add Catagory" />
+                            <input type="hidden" class="form-control" name="Name" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <h3>User Pannel</h3>
+    <table class="table table-bordered" style="color: black">
+        <thead>
+            <tr>
+                <td style="border-style: inset">First Name</td>
+                <td style="border-style: inset">Last Name</td>
+                <td style="border-style: inset">User Name</td>
+                <td style="border-style: inset">Password</td>
+                <td style="border-style: inset">Mobile No</td>
+                <td style="border-style: inset">Birthday</td>
+                <td style="border-style: inset">Gender</td>
+                <td style="border-style: inset">Status</td>
+                <td>Delete Users</td>
+            </tr>
+        </thead>
+        @foreach (UserInfo s in Model)
+        {
+            if (@s.Status == "user")
+            {
+                <tr>
+                    <td style="border-style: inset">@s.FirstName</td>
+                    <td style="border-style: inset">@s.LastName</td>
+                    <td style="border-style: inset">@s.UserName</td>
+                    <td style="border-style: inset">@s.Password</td>
+                    <td style="border-style: inset">@s.MobileNo</td>
+                    <td style="border-style: inset">@s.BirthDay</td>
+                    <td style="border-style: inset">@s.Gender</td>
+                    <td style="border-style: inset">@s.Status</td>
+                    <td>
+                        <form action="@Url.Action("deleteUser", "Admin")" method="POST">
+                            <input type="hidden" name="uname" value="@s.UserName" />
+                            <input type="submit" value="delete" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>

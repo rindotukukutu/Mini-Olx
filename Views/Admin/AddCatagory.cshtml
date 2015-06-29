@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "AddCatagory";
+}
+
+<div class="container">
+    <div class="row">
+        <form action="@Url.Action("SaveCatagory", "Admin")" method="POST" enctype="multipart/form-data">
+            <div>
+                <input type="search" name="Name" required="" class="form-control fa fa-search" style="width: 40%" placeholder=" add ctagory" />
+                <input type="file" class="btn" required="" name="cat" />
+                <input style="width: 15%" type="submit" class="form-control" placeholder="Done" />
+                
+            </div>
+        </form>
+    </div>
+</div>

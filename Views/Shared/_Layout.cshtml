@@ -1,0 +1,105 @@
+﻿@using FinalProject.Models
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/simple-sidebar.css" rel="stylesheet">
+        <link href="~/Content/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <title>@ViewBag.Title</title>
+    </head>
+<body style="background-image: url(/Images/bg1.png);background-repeat: no-repeat">
+    
+    <nav class="navbar navbar-collapse" role="navigation" style="background-color: lightblue;color: black">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img src="~/Images/real.png" class="img-rounded" alt="" width="50" height="50">
+                <a class="navbar-brand" href="/Home">MINI-MARKET</a>
+            </div>
+            <div class="pull-right">
+                <ul class="nav navbar-nav pull-right">
+                    <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="active">@Html.ActionLink("ABOUT", "About", "User")</li>
+                    <li class="active">@Html.ActionLink("Sign Up", "SignUp", "Home")</li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Adds<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="form-control">
+                                    @Html.ActionLink("View Adds", "Adds", "User")
+                                </li>
+                                <li class="form-control">
+                                    @Html.ActionLink("Post Adds", "PostAdd", "User")
+                                </li>
+                            </ul>
+                        </li>
+                    @if (Session["check"] != null)
+                    {
+                        UserInfo c = (UserInfo)Session["check"];
+                        <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-fw fa-user"></i>@c.FirstName<span class="caret"></span></a>
+                            
+                           <ul class="dropdown-menu">
+                                <li>
+                                    @Html.ActionLink("My Account", "Account", "User")
+                                </li>
+                                <li >
+                                    @Html.ActionLink("Log Out", "LogOut", "User")
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    else if (Session["admin"] != null)
+                    {
+                         <li class="active">@Html.ActionLink("Accounts Data", "admin", "Admin")</li>
+                    <li class="active">@Html.ActionLink("Add History", "Index", "Admin")</li>
+                        UserInfo c = (UserInfo)Session["admin"];
+                        <li class="dropdown">
+                            <img src=""/>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-fw fa-user"></i>@c.FirstName<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li >
+                                    @Html.ActionLink("Log Out", "LogOut", "Admin")
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("LogIn", "LogIn", "Home")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>  
+
+        @RenderBody()
+    
+        @Scripts.Render("~/bundles/jquery")
+        <script src="~/Scripts/bootstrap.js"></script>
+        <script src="~/Scripts/jquery-2.1.4.js"></script>
+</body>
+</html>
+
+@*<div id="wrapper">
+    <div id="sidebar-wrapper" style="background-color: azure;margin-top: 0%">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                @Html.ActionLink("Mini Market", "Index", "Home")
+            </li>
+            <li>
+                @Html.ActionLink("View Adds", "Adds", "User")
+            </li>
+            <li>
+                @Html.ActionLink("Post Adds", "PostAdd", "User")
+            </li>
+            <li>
+                @Html.ActionLink("LogIn", "LogIn", "Home")
+            </li>
+            <li>
+                @Html.ActionLink("SignUp", "SignUp", "Home")
+            </li>
+            <li>@Html.ActionLink("About", "About", "User")</li>
+        </ul>
+    </div>
+</div>*@

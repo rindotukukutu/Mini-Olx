@@ -1,0 +1,136 @@
+﻿@{
+    ViewBag.Title = "Mini Market";
+}
+@using FinalProject.Models;
+
+@if (ViewBag.isUser == false)
+{
+    <div class="alert alert-danger  alert-dismissible"><button type="button" class="close" data-dismiss='alert'>x</button>Wrong Password</div>
+}
+   
+<div class="container" style="margin-left: 16%;margin-top: -1%">
+        <div class="row">
+            <div class="col-md-8 col-sm-8 col-xs-8" style="">
+                <div class="row" style="color: black">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <label>Select Catagory</label>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <label>Search Product</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <form action="@Url.Action("Search","User")">
+                        <div class="col-md-4 col-sm-4 col-xs-4 dropdown">
+                            <select class="form-control" name="Ctagory" style="background-color: lightblue">
+                                <option class="form-control">Select</option>
+                                @foreach (Catagory c in Model)
+                                {
+                                    <option class="form-control">@c.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <input type="text" class="form-control" style="background-color: lightblue" name="Title" placeholder="Enter Title" />
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <input type="submit" class="form-control btn-default" style="width: 30%" placeholder="Search" />
+                        </div>
+                    </form>
+                </div>
+                <br /><br /><br />
+                <form action="@Url.Action("Search","User")">
+                    <div class="row">
+                        @foreach (Catagory c in Model)
+                        {
+                            <div class="col-md-3 col-sm-3 col-xs-3" style="padding-bottom: 15px;padding-right: 15%">
+                                <a href="/User/Catagory?data=@c.Name">
+                                    <img src="~/Images/@c.Name-.jpg" class="img-rounded" width="70" height="70">
+                                    @c.Name
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </form>
+                        @*<form action="@Url.Action("Search","User")">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <a href="/User/Catagory?data=Mobiles Phones">
+                                        <img src="~/Images/mobile.jpg" class="img-rounded" width="70" height="70">
+                                        Mobiles
+                                    </a>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <a href="/User/Catagory?data=Laptops">
+                                        <img src="~/Images/laptop.jpg" class="img-rounded" width="70" height="70">
+                                        Laptops
+                                    </a>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <a href="/User/Catagory?data=Vehicles">
+                                        <img src="~/Images/car.jpg" class="img-rounded" width="70" height="70">
+                                        Vehicles
+                                    </a>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <a href="/User/Catagory?data=Garments">
+                                        <img src="~/Images/clothes.jpg" class="img-rounded" width="70" height="70">
+                                        Garments
+                                    </a>
+                                </div>
+                            </div>
+                            <br /><br />
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <a href="/User/Catagory?data=Sports">
+                                        <img src="~/Images/sports.jpg" class="img-rounded" width="70" height="70">
+                                        Sports
+                                    </a>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <a href="/User/Catagory?data=Books">
+                                        <img src="~/Images/books.jpg" class="img-rounded" width="70" height="70">
+                                        Books
+                                    </a>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <a href="/User/Catagory?data=Shoes">
+                                        <img src="~/Images/shoes.jpg" class="img-rounded" width="70" height="70">
+                                        Shoes
+                                    </a>
+                                </div>
+
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <a href="/User/Catagory?data=Animals">
+                                        <img src="~/Images/animal.jpg" class="img-rounded" width="70" height="70">
+                                        Animals
+                                    </a>
+                                </div>
+                            </div>
+                            <br /><br />
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <a href="/User/Catagory?data=Furniture">
+                                        <img src="~/Images/Furniture.jpg" class="img-rounded" width="70" height="70">
+                                        Furniture
+                                    </a>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <a href="/User/Catagory?data=Exercise">
+                                        <img src="~/Images/Exercise.jpg" class="img-rounded" width="70" height="70">
+                                        Exercise
+                                    </a>
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="row">
+                                <div class="navbar-header">
+                                    <a class="navbar-brand" href="/User/Adds">SHOW ADDS</a>
+                                </div>
+                            </div>
+                            <br /><br />
+                        </form>
+                    </div>
+            </div>
+</div>*@

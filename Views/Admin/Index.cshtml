@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Home Admin"; 
+}
+@using FinalProject.Models;
+
+
+<div class="container" style="background-color: white">
+    <div class="item" style="color: white">
+        <h2>Admin Pannel</h2>
+    </div>
+    <h3>Adds Pannel</h3>
+    <table class="table table-bordered" style="color: black">
+        <thead>
+            <tr>
+                <td style="border-style: inset">Add Id</td>
+                <td style="border-style: inset">User Name</td>
+                <td style="border-style: inset">Add Title</td>
+                <td style="border-style: inset">Catagory Name</td>
+                <td style="border-style: inset">Discription</td>
+                <td style="border-style: inset">Price</td>
+                <td style="border-style: inset">Negotiable</td>
+                <td style="border-style: inset">Name on Add</td>
+                <td style="border-style: inset">Email</td>
+                <td style="border-style: inset">Mobile No</td>
+                <td style="border-style: inset">Image 1</td>
+                <td style="border-style: inset">Image 2</td>
+                <td style="border-style: inset">Image 3</td>
+                <td>Delete Adds</td>
+            </tr>
+        </thead>
+        @foreach (Add s in Model)
+        {
+            <tr>
+                <td style="border-style: inset">@s.AddId</td>
+                <td style="border-style: inset">@s.UserName</td>
+                <td style="border-style: inset">@s.Title</td>
+                <td style="border-style: inset">@s.Ctagory</td>
+                <td style="border-style: inset">@s.Discription</td>
+                <td style="border-style: inset">@s.price</td>
+                <td style="border-style: inset">@s.Negotiable</td>
+                <td style="border-style: inset">@s.Name</td>
+                <td style="border-style: inset;width: auto">@s.Email</td>
+                <td style="border-style: inset">@s.MobileNo</td>
+                @{
+                    string[] split1 = @s.Url.Split('_');
+                    string[] sp2 = @split1[1].Split('.');
+                }
+                    @for (int i = int.Parse(sp2[0]); i > 0; i--)
+                    {
+                        string s1 = split1[0] + "_" + i + "." + sp2[1];
+                        <td style="border-style: inset"><img src="~/Images/@s1" class="img-rounded" alt="" width="50" height="50"></td>
+                    }
+               
+                <td>
+                    @*<form action="@Url.Action("deleteAdd", "Admin")" method="POST">*@
+                        @*<input type="hidden" name="class" value="@s.AddId" />
+                        <input type="submit" value="delete" class="btn btn-danger"/>*@
+                    <a href="/Admin/deleteAdd/?id=@s.AddId"><i class="fa fa-2x fa-trash"></i>Delete</a>
+                    @*</form>*@
+                </td>
+            </tr>
+        }
+    </table>
+    <a href="/Admin/Admin" class="btn btn-info"><i class="fa fa-fw fa-user"></i>User Info</a>
+</div>

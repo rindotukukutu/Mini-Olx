@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "My Account";
+}
+@using FinalProject.Models;
+
+
+<div class="container" style="background-color: white">
+    <div class="item" style="color: white">
+        <h2>My Pannel</h2>
+    </div>
+    <div>
+        <input type="search" class="form-control " style="width: 20%" name="search" placeholder="search" />
+    </div>
+    <h3>User Pannel</h3>
+    <table class="table table-bordered" style="color: black">
+        <thead>
+            <tr>
+                <td style="border-style: inset">Add Id</td>
+                <td style="border-style: inset">User Name</td>
+                <td style="border-style: inset">Add Title</td>
+                <td style="border-style: inset">Catagory Name</td>
+                <td style="border-style: inset">Discription</td>
+                <td style="border-style: inset">Price</td>
+                <td style="border-style: inset">Negotiable</td>
+                <td style="border-style: inset">Name on Add</td>
+                <td style="border-style: inset">Email</td>
+                <td style="border-style: inset">Mobile No</td>
+                <td style="border-style: inset">Images</td>
+                <td>Delete Adds</td>
+            </tr>
+        </thead>
+        @foreach (Add s in Model)
+        {
+            <tr>
+                <td style="border-style: inset">@s.AddId</td>
+                <td style="border-style: inset">@s.UserName</td>
+                <td style="border-style: inset">@s.Title</td>
+                <td style="border-style: inset">@s.Ctagory</td>
+                <td style="border-style: inset">@s.Discription</td>
+                <td style="border-style: inset">@s.price</td>
+                <td style="border-style: inset">@s.Negotiable</td>
+                <td style="border-style: inset">@s.Name</td>
+                <td style="border-style: inset">@s.Email</td>
+                <td style="border-style: inset">@s.MobileNo</td>
+                <td style="border-style: inset"><img src="~/Images/@s.Url" class="img-rounded" alt="" width="50" height="50"></td>
+                <td>
+                    <a href="/User/delete/?id=@s.AddId"><i class="fa fa-2x fa-trash"></i>Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

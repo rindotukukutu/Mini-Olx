@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Post Adds";
+}
+@model List<Catagory>
+@using FinalProject.Models;
+
+<div class="container">
+
+</div>
+
+<div class="pull-right" style="background-color:white;border-style: ridge">
+        <div class="navbar-header">
+            <img src="~/Images/signup1.jpg" class="img-rounded" width="100" height="100">
+            <a class="navbar-brand" href="#">MINI-MARKET</a>
+        </div>
+        <br /><br /><br /><br /><br />
+            <form action="@Url.Action("SaveAdd","User")" method="post" enctype="multipart/form-data">
+            <div style="width: 89%; margin-left: 6%; margin-bottom: 4%">
+                <label>Submit your Add</label>
+                <input type="text"  required="" name="Title"  class="form-control" placeholder="Add Title" />
+                @{
+                    if (Session["check"] != null)
+                    {
+                        UserInfo c = (UserInfo) Session["check"];
+                        <input type="hidden" value="@c.UserName" name="UserName"/>
+                    }
+                }
+                
+                @{
+                    if (Session["admin"] != null)
+                    {
+                        UserInfo x = (UserInfo) Session["admin"];
+                        <input type="hidden" value="@x.UserName" name="UserName" />
+                    }
+                }
+                
+
+            </div>
+            <div class="form-group ">
+                <select class="col-sm-4 form-control" required="" name="Ctagory" style="width: 89%; margin-left: 6%; margin-bottom: 4%">
+                        <option class="form-control">Select</option>
+                        @foreach (Catagory a in Model)
+                        {
+                            <option class="form-control">@a.Name</option>
+                        }
+                    </select>
+            </div>
+            <div style="width: 89%">
+                <textarea class="form-control" required="" name="Discription" style="margin-left: 7%; margin-bottom: 4%" placeholder="Add Discription"></textarea>
+            </div>
+            <div>
+                <input type="file" required="" name="Url1" class="img-rounded" style="margin-left: 7%; margin-bottom: 4%" width="100" height="100" />
+                <input type="file" name="Url2" required="" class="img-rounded" style="margin-left: 7%; margin-bottom: 4%" width="100" height="100" />
+                <input type="file" required="" name="Url3" class="img-rounded" style="margin-left: 7%; margin-bottom: 4%" width="100" height="100" />
+            </div>
+            <div>
+                <a style="margin-left: 7%" href="#">Upload photos of your Product</a>
+            </div>
+            <div style="width: 89%">
+                <input type="text"  required="" name="price" class="form-control" style="margin-left: 7%; margin-bottom: 4%" placeholder="Price of Item" />
+            </div>
+            <div>
+                <input type="checkbox"  name="Negotiable" value="Negotiable" style="margin-left: 7%; margin-bottom: 4%" /><span>Negotiable</span>
+            </div>
+            <div style="width: 89%">
+                <input type="text" required="" name="Name" class="form-control" style="margin-left: 7%; margin-bottom: 4%" placeholder="Name" />
+            </div>
+            <div style="width: 89%">
+                <input type="email" required="" name="Email" class="form-control" style="margin-left: 7%; margin-bottom: 4%" placeholder="Email" />
+            </div>
+            <div style="width: 89%">
+                <input type="text"  required="" name="MobileNo" class="form-control" style="margin-left: 7%; margin-bottom: 4%" placeholder="Mobile No" />
+            </div>
+            <div style="width: 50%">
+                <a href="/User/Adds">  <input type="submit" class="form-control" style="color: white; margin-left: 40%; margin-bottom: 4%; background-color: darkblue; font-family: monospace" value="Submit ADD" /></a>
+            </div>
+        </form>
+    </div>
